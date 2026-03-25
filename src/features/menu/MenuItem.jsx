@@ -3,7 +3,11 @@ import { formatCurrency } from '../../utils/helpers';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addMenuItem, getCurrentQuantityById } from '../cart/cartSlice';
+import {
+  addMenuItem,
+  removeMenuItem,
+  getCurrentQuantityById,
+} from '../cart/cartSlice';
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
@@ -12,6 +16,8 @@ function MenuItem({ pizza }) {
 
   const currentQuantity = useSelector(getCurrentQuantityById(id));
   console.log(currentQuantity);
+
+  const isInCart = currentQuantity > 0;
 
   function handleAddToCart(e) {
     console.log(id);
@@ -47,6 +53,12 @@ function MenuItem({ pizza }) {
             <p className="text-sm font-medium uppercase text-stone-500">
               Sold out
             </p>
+          )}
+
+          {isInCart && (
+            <Button type="small" onClick={() => dispatch(removeMenuItem(id))}>
+              Delete Item
+            </Button>
           )}
 
           {!soldOut && (
