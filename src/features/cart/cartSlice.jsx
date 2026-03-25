@@ -47,4 +47,10 @@ export const {
   clearCart,
 } = cartSlice.actions;
 
+export const getCart = (state) => state.cart.cart;
+
+export const getCurrentQuantityById = (id) => (state) =>
+  state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+//return item.quantity;
+
 export default cartSlice.reducer;
