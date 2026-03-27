@@ -7,7 +7,7 @@ import { clearCart } from './cartSlice';
 import EmptyCart from './EmptyCart';
 
 function Cart() {
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart.actualCart);
   const username = useSelector((state) => state.user.registeredusername);
   const dispatch = useDispatch();
 

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { formatCurrency } from '../../utils/helpers';
 
 function CartOverview() {
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart.actualCart);
 
   const totalValue = cart.reduce(
     (sum, item) => sum + item.quantity * item.unitPrice,
